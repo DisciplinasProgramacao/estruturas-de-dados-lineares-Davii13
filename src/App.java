@@ -207,8 +207,8 @@ public class App {
      * @param pedido O pedido que deve ser finalizado.
      */
     public static void finalizarPedido(Pedido pedido) {
-    	
-    	// TODO
+    	pilhaPedidos.empilhar(pedido);
+        System.out.println("Pedido finalizado e adicionado à pilha!");
     }
     
     public static void listarProdutosPedidosRecentes() {
