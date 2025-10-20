@@ -20,7 +20,7 @@ public class App {
     static int quantosProdutos = 0;
 
     /** Pilha de pedidos */
-    static Pilha<Pedido> pilhaPedidos = new Pilha<>();
+    static Fila<Pedido> FilaPedidos = new Fila<>();
         
     static void limparTela() {
         System.out.print("\033[H\033[2J");
@@ -207,19 +207,13 @@ public class App {
      * @param pedido O pedido que deve ser finalizado.
      */
     public static void finalizarPedido(Pedido pedido) {
-    	pilhaPedidos.empilhar(pedido);
-        System.out.println("Pedido finalizado e adicionado à pilha!");
+    	FilaPedidos.inserir(pedido);
+        System.out.println("Pedido finalizado e adicionado à fila!");
     }
     
-    public static void listarProdutosPedidosRecentes() {
+    public static void listarProdutosPedidosPrimeiro() {
     	 
-        Pedido pedido = pilhaPedidos.desempilhar();
-
-        
-        for (Produto p : pedido.getProdutos()) {
-            System.out.println("- " + p.toString());
-        }
-     pilhaPedidos.empilhar(pedido);
+       ////to do //////
     }
     
 	public static void main(String[] args) {

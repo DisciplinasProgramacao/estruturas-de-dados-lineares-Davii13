@@ -1,10 +1,12 @@
-public class Fila {
+import java.util.function.Function;
+
+public class Fila<E> {
     private Celula primeiro,ultimo;
      public Fila(){
      primeiro= new Celula();
      ultimo=primeiro;
      }
-   public void inserir(int x){
+   public void inserir(E x){
     Celula novo;
     novo = new Celula(x);
    ultimo.setProximo(novo);
@@ -28,14 +30,14 @@ FimAlgoritmo
  */
    }
 
-   public int remover(){
+   public E remover(){
     if(vazia()){
         System.err.println("a fila esta vazia nao foi possivel remover ");
-        return -1;
+        return null;
     }
     else{
         Celula aux=primeiro.getProximo();
-        int valor = (int) aux.getItem();
+        E valor = (E) aux.getItem();
         primeiro.setProximo(aux.getProximo());
         if(primeiro.getProximo()==null){
             ultimo=primeiro;
@@ -92,6 +94,22 @@ FimAlgoritmo */
 
 
   }
+public double calcularValorMedio(Function<E, Double> extrator, int quantidade){
+   if(vazia()){System.err.println("impossivel!!!!!!!!!!!!! \n fila vazia");return -0.0;}
+   else {   double soma = 0.0;
+    int contador = 0;
+     Celula atual=primeiro.getProximo();
+     while (atual != null && contador < quantidade){
+        E item=(E) atual.getItem();
+        soma+=extrator.apply(item);
+        contador++;
+        atual=atual.getProximo();
+     }
+     return soma/contador;
+
+
+   }
+}
 
 
 
