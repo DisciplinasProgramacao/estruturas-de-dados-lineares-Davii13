@@ -1,4 +1,5 @@
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class Fila<E> {
     private Celula primeiro,ultimo;
@@ -110,6 +111,41 @@ public double calcularValorMedio(Function<E, Double> extrator, int quantidade){
 
    }
 }
+
+/*método filtrar(condicional, quantidade):
+    criar novaFila vazia
+    se a fila estiver vazia ou quantidade <= 0:
+        retornar novaFila (vazia)
+    
+    atual ← primeiro.getProximo()
+    contador ← 0
+
+    enquanto atual ≠ null E contador < quantidade:
+        elemento ← atual.getItem()
+        
+        se condicional.test(elemento) for verdadeiro:
+            novaFila.inserir(elemento)
+
+        atual ← atual.getProximo()
+        contador ← contador + 1
+
+    retornar novaFila
+ */
+
+ public Fila<E> filtrar(Predicate<E> condicional, int quantidade){
+    Fila<E> novaFila= new Fila<>();
+    if(vazia()|| quantidade<=0){System.err.println("a fila esta vazia!!!")return novaFila;}
+    Celula<E> atual= primeiro;
+    int contador =0;
+    while(atual != null && contador < quantidade){
+        E elemento = atual.getItem();
+        if(condicional.test(elemento)){novaFila.inserir(elemento);}
+        atual= atual.getProximo();
+        contador++;
+
+    }
+     return novaFila;
+ }
 
 
 
