@@ -2,7 +2,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class Fila<E> {
-    private Celula primeiro,ultimo;
+    private Celula<E> primeiro,ultimo;
      public Fila(){
      primeiro= new Celula();
      ultimo=primeiro;
@@ -63,10 +63,10 @@ FimAlgoritmo
         Retornar valor
     FimSe
 FimAlgoritmo */
-    if (primeiro.getItem()==ultimo.getItem()){
-        return true;
-    }
-    else{return false;}
+    
+    return primeiro == ultimo;
+
+
   }
 
 
@@ -84,7 +84,7 @@ FimAlgoritmo */
 FimAlgoritmo */
    if(vazia()){System.err.println("a fila esta vazia");}
    else{
-    Celula aux=new Celula(primeiro.getProximo());
+    Celula<E> aux=primeiro.getProximo();
     while(aux!=null){
         System.out.println(aux.getItem());
        aux = aux.getProximo();
@@ -99,7 +99,7 @@ public double calcularValorMedio(Function<E, Double> extrator, int quantidade){
    if(vazia()){System.err.println("impossivel!!!!!!!!!!!!! \n fila vazia");return -0.0;}
    else {   double soma = 0.0;
     int contador = 0;
-     Celula atual=primeiro.getProximo();
+     Celula<E> atual=primeiro.getProximo();
      while (atual != null && contador < quantidade){
         E item=(E) atual.getItem();
         soma+=extrator.apply(item);
@@ -134,8 +134,8 @@ public double calcularValorMedio(Function<E, Double> extrator, int quantidade){
 
  public Fila<E> filtrar(Predicate<E> condicional, int quantidade){
     Fila<E> novaFila= new Fila<>();
-    if(vazia()|| quantidade<=0){System.err.println("a fila esta vazia!!!")return novaFila;}
-    Celula<E> atual= primeiro;
+    if(vazia()|| quantidade<=0){System.err.println("a fila esta vazia!!!");return novaFila;}
+    Celula<E> atual= primeiro.getProximo();
     int contador =0;
     while(atual != null && contador < quantidade){
         E elemento = atual.getItem();
